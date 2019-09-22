@@ -24,7 +24,6 @@ router.get('/users/create', (req, res) => {
 
 router.post('/users/created', (req, res, next) => {
   const userToCreate = req.body;
-
   userCreateOne(userToCreate)
     .then((user) => {
       res.render('userCreated', { user });
@@ -61,13 +60,13 @@ router.get('/users/update/:userId', (req, res) => {
 
 router.post('/users/userUpdated', (req, res, next) => {
   const userRec = req.body;
-  const { userId } = userRec.Id;
+  const { Id } = req.body;
   const userToUpdate = {
     ...userRec,
   };
   delete userToUpdate.Id;
 
-  userUpdate(userId, userToUpdate)
+  userUpdate(Id, userToUpdate)
     .then((user) => {
       res.render('userUpdated', { user });
     })
