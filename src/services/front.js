@@ -98,6 +98,10 @@ router.get('/users/userDeleted/:userId', (req, res, next) => {
       next(err);
     });
 });
+router.get('/about', (req, res) => {
+  res.render('aboutUs', { menuId: 'home' });
+});
+
 router.get('/', (req, res) => {
   res.render('index', { menuId: 'home' });
 });
