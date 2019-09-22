@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+<html>
+
+      <head>
+          <% include parts/head %>
+      </head>
+
   <body>
+      <% include parts/menu %>
+
     <a href="/users/create">Create a user</a>
-    <ul>
-      <% users.forEach(function(user){ %>
-        <li><%= user.email %></li><a href="/users/update/<%= user._id %>">Modifier</a><a href="/users/delete/<%= user._id %>">Supprimer</a>
-      <% }) %>
-    </ul>
+    <table class="table table-bordered table-hover">
+        <caption>List of users</caption>
+        <thead >
+            <tr>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody><% users.forEach(function(user){ %>
+            <tr>
+                  <td><%= user.email %></td><td><a class="btn btn-primary" role="button" href="/users/update/<%= user._id %>">Modifier</a><a class="btn btn-danger" role="button" href="/users/delete/<%= user._id %>">Supprimer</a></td>
+              </tr>  <% }) %>
+
+    </table>
   </body>
+  <% include parts/script %>
+
 </html>

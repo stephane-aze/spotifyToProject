@@ -1,306 +1,398 @@
 swagger: "2.0"
 info:
   version: "1.0.0"
-  title: "Todo list manager"
+  title: "Use API Spotify"
 host: "localhost:3000"
 basePath: "/api"
 schemes:
 - http
 tags:
-- name: Lists
-- name: List Tasks
-- name: Users
+- name: Login/Sign Up
+- name: User Manager
+- name: User Space
+- name: Favoris
+- name: Search
+- name: Favoris Albums
 paths:
-  "/lists":
+  "/login":
     post:
       tags:
-      - Lists
-      parameters:
-      - name: list
-        in: body
-        schema:
-          $ref: '#/definitions/ListCreation'
-      summary: "Create a list"
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/List'
-    get:
-      parameters:
-      - name: first
-        type: number
-        in: query
-      - name: offset
-        type: number
-        in: query
-      - name: term
-        type: string
-        in: query
-      tags:
-      - Lists
-      summary: "Find lists"
-      responses:
-        200:
-          description: OK
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/List'
-
-
-  "/lists/{listId}":
-    parameters:
-      - name: listId
-        in: path
-        type: string
-        required: true
-      - name: list
-        in: body
-        schema:
-          $ref: '#/definitions/ListUpdate'
-    get:
-      tags:
-      - Lists
-      summary: "Find a list by ID"
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/List'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/NotFound'
-    patch:
-      tags:
-      - Lists
-      summary: "Update an list by ID"
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/List'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/NotFound'
-    delete:
-      tags:
-      - Lists
-      summary: "Delete a list by ID"
-      responses:
-        200:
-          description: OK
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                enum:
-                - ok
-                - ko
-              deletedId:
-                type: string
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/NotFound'
-
-  "/lists/{listId}/tasks":
-    parameters:
-    - name: listId
-      in: path
-      type: string
-      required: true
-    get:
-      parameters:
-      - name: first
-        type: number
-        in: query
-      - name: offset
-        type: number
-        in: query
-      - name: term
-        type: string
-        in: query
-      tags:
-      - List Tasks
-      summary: "Find tasks for a list"
-      responses:
-        200:
-          description: OK
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Task'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/NotFound'
-    post:
-      tags:
-      - List Tasks
-      parameters:
-      - name: task
-        in: body
-        schema:
-          $ref: '#/definitions/TaskCreation'
-      summary: "Create a task in a list"
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/Task'
-
-  "/lists/{listId}/tasks/{taskId}":
-    parameters:
-      - name: listId
-        in: path
-        type: string
-        required: true
-      - name: taskId
-        in: path
-        type: string
-        required: true
-    get:
-      tags:
-      - List Tasks
-      summary: "Find a task by ID"
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/Task'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/NotFound'
-    patch:
-      tags:
-      - List Tasks
-      parameters:
-      - name: list
-        in: body
-        schema:
-          $ref: '#/definitions/TaskUpdate'
-      summary: "Update an task by ID"
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/Task'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/NotFound'
-    delete:
-      tags:
-      - List Tasks
-      summary: "Delete a task by ID"
-      responses:
-        200:
-          description: OK
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                enum:
-                - ok
-                - ko
-              deletedId:
-                type: string
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/NotFound'
-  "/users":
-    post:
+      - Login/Sign Up
       parameters:
       - name: user
         in: body
         schema:
-          $ref: '#/definitions/UserCreation'
-      tags:
-      - Users
-      summary: "Create a user"
+          $ref: '#/definitions/User'
+      summary: "Se connecter"
       responses:
         200:
           description: OK
           schema:
             $ref: '#/definitions/User'
-    get:
+  "/sign_up":
+    post:
       tags:
-      - Users
-      parameters:
-      - name: first
-        type: number
-        in: query
-      - name: offset
-        type: number
-        in: query
-      summary: "Find users"
+      - Login/Sign Up
+      summary: "S'inscrire"
       responses:
         200:
           description: OK
           schema:
             type: array
             items:
-              $ref: '#/definitions/User'
-
+              $ref: '#/definitions/UserCreation'
   "/users/{userId}":
     parameters:
     - name: userId
       in: path
       type: string
       required: true
-    - name: user
-      in: body
-      required: true
-      schema:
-        $ref: '#/definitions/UserUpdate'
-    get:
-      tags:
-      - Users
-      summary: "Find a user by ID"
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/User'
-    delete:
-      tags:
-      - Users
-      summary: "Delete a user by ID"
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/User'
+
     patch:
       tags:
-      - Users
-      summary: "Update a user by ID"
+      - User Manager
+      summary: "Update an user"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserUpdate'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+    delete:
+      tags:
+      - User Manager
+      summary: "Delete an user by ID"
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                enum:
+                - ok
+                - ko
+              deletedId:
+                type: string
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+  "/favoris":
+
+    get:
+      parameters:
+      - name: first
+        type: number
+        in: query
+      - name: offset
+        type: number
+        in: query
+      - name: term
+        type: string
+        in: query
+      tags:
+      - Favoris
+      summary: "Find favoris"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserUpdate'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+    post:
+        tags:
+        - Favoris
+        parameters:
+        - name: favoris
+          in: body
+          schema:
+            $ref: '#/definitions/FavorisCreation'
+        summary: "Create a favori"
+        responses:
+          200:
+            description: OK
+            schema:
+              $ref: '#/definitions/Favoris'
+          404:
+            description: Not Found
+            schema:
+              $ref: '#/definitions/NotFound'
+  "/favoris/{favorisId}":
+    parameters:
+    - name: userId
+      in: path
+      type: string
+      required: true
+    - name: favorisId
+      in: path
+      type: string
+      required: true
+    get:
+      tags:
+      - Favoris
+      summary: "Find favori by ID"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/FavorisUpdate'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+    patch:
+      tags:
+      - Favoris
+      summary: "Update an favoris by ID"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Favoris'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+    delete:
+        tags:
+        - Favoris
+        summary: "Delete a favoris by ID"
+        responses:
+          200:
+            description: OK
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                  - ok
+                  - ko
+                deletedId:
+                  type: string
+          404:
+            description: Not Found
+            schema:
+              $ref: '#/definitions/NotFound'
+
+  "/space ":
+    patch:
+      tags:
+      - User Space
+      summary: "Update my user"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserUpdate'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+    get:
+      tags:
+      - User Space
+      summary: "See my profile"
       responses:
         200:
           description: OK
           schema:
             $ref: '#/definitions/User'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+
+  "/favoris/{favorisId}/albums":
+    parameters:
+    - name: favorisId
+      in: path
+      type: string
+      required: true
+    get:
+      parameters:
+      - name: first
+        type: number
+        in: query
+      - name: offset
+        type: number
+        in: query
+      - name: term
+        type: string
+        in: query
+      tags:
+      - Favoris Albums
+      summary: "Find album for a favoris"
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Albums'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+    post:
+      tags:
+      - Favoris Albums
+      parameters:
+      - name: album
+        in: body
+        schema:
+          $ref: '#/definitions/AlbumsCreation'
+      summary: "Add Album to my favori"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Albums'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+  "/favoris/{favorisId}/albums{albumId}":
+    parameters:
+      - name: albumId
+        in: path
+        type: string
+        required: true
+      - name: favorisId
+        in: path
+        type: string
+        required: true
+    get:
+      tags:
+      - Favoris Albums
+      summary: "Find an album by ID"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Albums'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+    patch:
+      tags:
+      - Favoris Albums
+      parameters:
+      - name: favoris
+        in: body
+        schema:
+          $ref: '#/definitions/AlbumsUpdate'
+      summary: "Update an album by ID"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Albums'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+    delete:
+      tags:
+      - Favoris Albums
+      summary: "Delete an album by ID"
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                enum:
+                - ok
+                - ko
+              deletedId:
+                type: string
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
+  "/search":
+    parameters:
+    - name: q
+      type: string
+      in: query
+    - name: offset
+      type: number
+      in: query
+    - name: limit
+      type: number
+      in: query
+    - name: type
+      type: string
+      enum:
+        - album
+        - artist
+        - playlist
+      in: query
+    post:
+      tags:
+      - Search
+      summary: "Search a album"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Albums'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/NotFound'
 
 definitions:
-  List:
+  User:
+    type: object
+    properties:
+      "_id":
+        type: number
+      email:
+        type: string
+        format: email
+      password:
+        type: string
+  UserCreation:
+    type: object
+    properties:
+      "_id":
+        type: number
+      email:
+        type: string
+        format: email
+      password:
+        type: string
+  UserUpdate:
+    type: object
+    properties:
+      email:
+        type: string
+        format: email
+      password:
+        type: string
+  Favoris:
     type: object
     properties:
       "_id":
         type: number
       name:
         type: string
-      description:
-        type: string
       userId:
         type: string
-  ListCreation:
+  FavorisCreation:
     type: object
     required:
     - name
@@ -309,78 +401,37 @@ definitions:
     properties:
       name:
         type: string
-      description:
-        type: string
       userId:
         type: string
-  ListUpdate:
+  FavorisUpdate:
     type: object
     properties:
       name:
         type: string
-      description:
-        type: string
-  Task:
+  Albums:
     type: object
     properties:
       "_id":
+        type: number
+      nom:
         type: string
+      artist:
+        type: string
+
+  AlbumsCreation:
+    type: object
+    properties:
+      name:
+        type: string
+      artist:
+        type: string
+  AlbumsUpdate:
+    type: object
+    properties:
       name:
         type: string
       checked:
         type: boolean
-        default: false
-  TaskCreation:
-    type: object
-    properties:
-      name:
-        type: string
-  TaskUpdate:
-    type: object
-    properties:
-      name:
-        type: string
-      checked:
-        type: boolean
-  User:
-    type: object
-    properties:
-      "_id":
-        type: string
-      firstname:
-        type: string
-      lastname:
-        type: string
-      email:
-        type: string
-        format: email
-  UserCreation:
-    type: object
-    required:
-    - password
-    - email
-    properties:
-      firstname:
-        type: string
-      lastname:
-        type: string
-      password:
-        type: string
-      email:
-        type: string
-        format: email
-  UserUpdate:
-    type: object
-    properties:
-      firstname:
-        type: string
-      lastname:
-        type: string
-      password:
-        type: string
-      email:
-        type: string
-        format: email
   NotFound:
     type: object
     properties:

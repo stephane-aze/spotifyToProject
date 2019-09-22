@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html >
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+<html>
+
+      <head>
+          <% include parts/head %>
+      </head>
+
   <body>
+      <% include parts/menu %>
     <h1>Hello</h1>
     <p>Votre email est <%= user.email %></p>
     <% if (user.firstname) { %>
       <p>Votre nom est <%= user.firstname %> <%= user.lastname %></p>
     <% } %>
   </body>
+  <% include parts/script %>
+
 </html>

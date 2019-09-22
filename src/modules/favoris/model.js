@@ -2,13 +2,13 @@ const joi = require('@hapi/joi');
 
 const createModel = joi.object().keys({
   name: joi.string().required(),
-  listId: joi.string().required(),
-  checked: joi.boolean().required(),
+  description: joi.string(),
+  userId: joi.string().required(),
 });
 
 const updateModel = joi.object().keys({
   name: joi.string(),
-  checked: joi.boolean(),
+  description: joi.string(),
 });
 
 module.exports = {

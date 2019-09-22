@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
+<html>
+
+      <head>
+          <% include parts/head %>
+      </head>
+
+  <body>
+      <% include parts/menu %>
       Voulez-vous vraiment supprimer l'utilisateur "<%= user.email %>"?
-			<a href="/users/userDeleted/<%= user._id %>">Confirmer</a><a href="/users">Retour</a>
+			<a class="btn btn-primary" role="button" href="/users/userDeleted/<%= user._id %>">Confirmer</a><a class="btn btn-light" role="button"href="/users">Retour</a>
     </form>
 	</body>
+  <% include parts/script %>
+
 </html>

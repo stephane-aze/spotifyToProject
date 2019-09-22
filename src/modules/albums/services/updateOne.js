@@ -4,17 +4,17 @@ const collections = require('../../../enums/collections');
 const findOne = require('./findOne');
 const { updateModel } = require('../model');
 
-module.exports = (taskId, listId, taskToUpdate) => {
+module.exports = (albumId, favorisId, taskToUpdate) => {
   return updateModel.validate(taskToUpdate)
     .then(() => connect())
-    .then(db => db.collection(collections.TASKS))
+    .then(db => db.collection(collections.ALBUMS))
     .then(collection => collection.updateOne({
-      _id: ObjectId(taskId),
-      listId,
+      _id: ObjectId(albumId),
+      favorisId,
     }, { $set: taskToUpdate }))
     .then((dbResponse) => {
       if (dbResponse.matchedCount === 1) {
-        return findOne(taskId, listId);
+        return findOne(albumId, favorisId);
       }
 
       const err = new Error('Not Found');

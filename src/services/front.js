@@ -11,7 +11,7 @@ const router = new Router();
 router.get('/users', (req, res, next) => {
   userFind()
     .then((users) => {
-      res.render('users', { users });
+      res.render('users', { users, menuId: 'admin' });
     })
     .catch((err) => {
       next(err);
@@ -19,14 +19,14 @@ router.get('/users', (req, res, next) => {
 });
 
 router.get('/users/create', (req, res) => {
-  res.render('createUser');
+  res.render('createUser', { menuId: 'admin' });
 });
 
 router.post('/users/created', (req, res, next) => {
   const userToCreate = req.body;
   userCreateOne(userToCreate)
     .then((user) => {
-      res.render('userCreated', { user });
+      res.render('userCreated', { user, menuId: 'admin' });
     })
     .catch((err) => {
       next(err);
@@ -40,7 +40,7 @@ router.get('/users/:userId', (req, res, next) => {
 
   userFindOneById(userId)
     .then((user) => {
-      res.render('user', { user });
+      res.render('user', { user, menuId: 'admin' });
     })
     .catch((err) => {
       next(err);
@@ -54,7 +54,7 @@ router.get('/users/update/:userId', (req, res) => {
 
   userFindOneById(userId)
     .then((user) => {
-      res.render('updateUser', { user });
+      res.render('updateUser', { user, menuId: 'admin' });
     });
 });
 
@@ -68,7 +68,7 @@ router.post('/users/userUpdated', (req, res, next) => {
 
   userUpdate(Id, userToUpdate)
     .then((user) => {
-      res.render('userUpdated', { user });
+      res.render('userUpdated', { user, menuId: 'admin' });
     })
     .catch((err) => {
       next(err);
@@ -82,7 +82,7 @@ router.get('/users/delete/:userId', (req, res) => {
 
   userFindOneById(userId)
     .then((user) => {
-      res.render('deleteUser', { user });
+      res.render('deleteUser', { user, menuId: 'admin' });
     });
 });
 router.get('/users/userDeleted/:userId', (req, res, next) => {
@@ -92,7 +92,7 @@ router.get('/users/userDeleted/:userId', (req, res, next) => {
 
   deleteOneById(userId)
     .then((user) => {
-      res.render('userDeleted', { user });
+      res.render('userDeleted', { user, menuId: 'admin' });
     })
     .catch((err) => {
       next(err);

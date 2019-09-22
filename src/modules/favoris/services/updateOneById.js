@@ -4,11 +4,11 @@ const connect = require('../../../clients/mongodb');
 const collections = require('../../../enums/collections');
 const findOneById = require('./findOneById');
 
-module.exports = (id, listToUpdate) => {
-  return updateModel.validate(listToUpdate)
+module.exports = (id, favorisToUpdate) => {
+  return updateModel.validate(favorisToUpdate)
     .then(() => connect())
-    .then(db => db.collection(collections.LISTS))
-    .then(collection => collection.updateOne({ _id: ObjectId(id) }, { $set: listToUpdate }))
+    .then(db => db.collection(collections.FAVORIS))
+    .then(collection => collection.updateOne({ _id: ObjectId(id) }, { $set: favorisToUpdate }))
     .then((dbResponse) => {
       if (dbResponse.matchedCount === 1) {
         return findOneById(id);

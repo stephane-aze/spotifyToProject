@@ -1,14 +1,18 @@
 const { Router } = require('express');
-const listsRouter = require('../modules/lists/router');
-const tasksRouter = require('../modules/tasks/router');
+const favorisRouter = require('../modules/favoris/router');
+const albumsRouter = require('../modules/albums/router');
 const usersRouter = require('../modules/users/router');
+const spotifyRouter = require('../modules/spotify/router');
+
 
 const router = new Router();
 
 // Service  API
-router.use('/api', listsRouter);
-router.use('/api', tasksRouter);
+router.use('/api', favorisRouter);
+router.use('/api', albumsRouter);
 router.use('/api', usersRouter);
+router.use('/api', spotifyRouter);
+
 // End of service API
 
 module.exports = router;

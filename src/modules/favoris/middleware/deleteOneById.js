@@ -1,11 +1,11 @@
 const deleteOneById = require('../services/deleteOneById');
 
 module.exports = (req, res, next) => {
-  const { listId } = req.params;
+  const { favorisId } = req.params;
 
-  deleteOneById(listId)
-    .then((list) => {
-      res.json(list);
+  deleteOneById(favorisId)
+    .then((favoris) => {
+      res.json(favoris);
     })
     .catch((err) => {
       next(err);

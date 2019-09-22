@@ -1,66 +1,44 @@
-# What we learned
+### Projet Spotify
+Ce projet doit:
 
-## Monday
-- [x] Gitignore file to avoid unnecessary files on our git repository
-- [x] Editor config to manage our main guidelines on our editor
-- [x] PM2 and `ecosystem` config file
-- [x] NPX to quickly access node_module bin folder
-- [x] NPM with package.json config file
-- [x] Express JS, creation of simple routes
+  # Login
+  Grace à l'email et un mot de passe je reçois un token JWT me permettant d'accéder aux routes
+  privées.
 
-## Tuesday
-- [x] Code modularization
-- [x] Write and launch unit test
-- [x] Write a swagger documentation
+  # Sign Up
+  En renseignant email et mot de passe je créer mon compte et je reçois un token JWT me
+  permettant d'accéder aux routes privées.
+  # Lister les utilisateurs
+  Permet de consulter l’ensemble des inscrits sur la plateforme, en prenant garde de masquer les
+  informations sensibles. Cette action n'est permise qu'aux administrateurs.
 
-## Wednesday
-- [x] Launch and manage a Mongo DB server
-- [x] Nested params on routes
-- [x] Paginate a list
-- [x] Search in a collection
+  # Supprimer un utilisateur
+  Cette action n'est permise qu'aux utilisateurs connectés et administrateurs. Attention: cette
+  action doit supprimer toutes les ressources attachées à cet utilisateurs.
+  # Mettre à jours un utilisateur
+  Cette action n'est permise qu'aux utilisateurs connectés et administrateurs.
+  # Mettre à jours mon utilisateur
+  Cette action n'est permise que pour l'utilisateur connecté.
+  # Voir mes infos utilisateur
+  Cette action me permet d’accéder à mes information personnelles.
 
-# Requirements
-## NPX
-Npx is a command line tool who provide a shortcut to `./node_module/.bin`
-```shell
-npm install -g npx
-```
+## Action sur spotify
 
-## Mongo DB
-A running mongodb server, available on `localhost:27017`
+  # Rechercher un album
+  Ce endpoint doit permettre de rechercher des albums afin de récupérer un ID. N'oubliez pas les
+  paramètres de pagination.
 
-# How to start
-## Install dependencies
-```shell
-npm install
-```
+  # Ajouter un album à mes favoris
+  Après avoir récupéré un ID d'album vous devez sauvegarder en base de donnée cet album en
+  favoris et l'attribuer à l'utilisateur en cours.
 
-## Run migration
-```shell
-npm run migrate
-```
+  # Lister mes favoris
+  Cette action n'est permise que pour l'utilisateur connecté.
 
-# How to use
-## Run server in production mode
-```shell
-npm start
-```
+  # Voir un de mes favoris
+  Cette action n'est permise que pour l'utilisateur connecté et si seulement le favoris lui appartient.
 
-## Run server in development mode
-```shell
-npm run start-dev
-# or
-npx pm2 start
-```
+  # Supprimer un de mes favoris
+  Cette action n'est permise que pour l'utilisateur connecté et si seulement le favoris lui appartient.
 
-## Run test
-```shell
-npm test
-```
 
-## Show logs
-```shell
-npm run logs
-# or
-npx pm2 logs
-```

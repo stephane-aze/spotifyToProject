@@ -1,11 +1,11 @@
 const createOne = require('../services/createOne');
 
 module.exports = (req, res, next) => {
-  const { listId } = req.params;
-  const taskToCreate = req.body;
-  createOne(taskToCreate, listId)
-    .then((task) => {
-      res.send(task);
+  const favorisToCreate = req.body;
+
+  createOne(favorisToCreate)
+    .then((favoris) => {
+      res.json(favoris);
     })
     .catch((err) => {
       next(err);

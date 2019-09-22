@@ -7,11 +7,11 @@ const updateOne = require('./middleware/updateOne');
 
 const router = new Router();
 
-router.route('/lists/:listId/tasks')
+router.route('/lists/:listId/albumId')
   .post(createOne)
   .get(find);
 
-router.route('/lists/:listId/tasks/:taskId')
+router.route('/lists/:listId/tasks/:albumId')
   .delete(deleteOne)
   .patch(updateOne)
   .get(findOne);

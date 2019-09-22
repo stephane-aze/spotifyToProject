@@ -1,7 +1,7 @@
 const find = require('../services/find');
 
 module.exports = (req, res, next) => {
-  const { listId } = req.params;
+  const { favorisId } = req.params;
   const {
     first,
     offset,
@@ -11,9 +11,9 @@ module.exports = (req, res, next) => {
 
   if (first) firstInt = parseInt(first, 10);
   if (offset) offsetInt = parseInt(offset, 10);
-  find(listId, firstInt, offsetInt)
-    .then((tasks) => {
-      res.json(tasks);
+  find(favorisId, firstInt, offsetInt)
+    .then((albums) => {
+      res.json(albums);
     })
     .catch((err) => {
       next(err);

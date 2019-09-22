@@ -3,7 +3,7 @@ const collections = require('../../../enums/collections');
 
 module.exports = (first = 20, offset = 0, term) => {
   return connect()
-    .then(db => db.collection(collections.LISTS))
+    .then(db => db.collection(collections.FAVORIS))
     .then(collection => collection.find(
       term ? { $text: { $search: term } } : null,
     ).limit(first).skip(offset))

@@ -1,5 +1,5 @@
 module.exports = {
-  LISTS: 'lists',
-  TASKS: 'tasks',
+  FAVORIS: 'favoris',
+  ALBUMS: 'albums',
   USERS: 'users',
 };

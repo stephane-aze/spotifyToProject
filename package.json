@@ -1,7 +1,7 @@
 {
-  "name": "todo",
+  "name": "spotify",
   "version": "1.0.0",
-  "description": "Todo masterization",
+  "description": "Project spotify",
   "main": "src/index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha './src/**/*.unit.js'",

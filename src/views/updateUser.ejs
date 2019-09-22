@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-		<form action="/users/userUpdated" method="post" enctype="application/json">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email" value="<%= user.email %>"/>
-			<label for="password">Password</label>
-			<input type="password" name="password" id="password"/>
+<html>
+
+      <head>
+          <% include parts/head %>
+      </head>
+
+  <body>
+      <% include parts/menu %>
+
+    <form action="/users/userUpdated" method="post" enctype="application/json">
+      <div class="form-group  row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-7">
+            <input type="email" name="email" id="email" class="form-control"  value="<%= user.email %>"/>
+        </div>
+      </div>
+      <div class="form-group  row">
+        <label  for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-7">
+          <input type="password" name="password" class="form-control" id="password"/>
+        </div>
+      </div>
 			<input type="hidden" name="Id" id="Id" value="<%= user._id %>"/>
-      <button type="submit">Ajouter</button>
+      <button class="btn btn-primary" role="button" type="submit">Ajouter</button>
     </form>
 	</body>
+  <% include parts/script %>
+
 </html>
