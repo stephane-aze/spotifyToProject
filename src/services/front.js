@@ -3,7 +3,7 @@ const userFindOneById = require('../modules/users/services/findOneById');
 const userCreateOne = require('../modules/users/services/createOne');
 const userUpdate = require('../modules/users/services/updateOneById');
 const userFind = require('../modules/users/services/find');
-const deleteOneById = require('../modules/users/middleware/deleteOneById');
+const deleteOneById = require('../modules/users/services/deleteOneById');
 
 
 const router = new Router();
@@ -63,7 +63,7 @@ router.post('/users/userUpdated', (req, res, next) => {
   const userToUpdate = req.body;
   const { userId } = userToUpdate.Id;
 
-  userUpdate(userToUpdate, userId)
+  userUpdate(userId, userToUpdate)
     .then((user) => {
       res.render('userUpdated', { user });
     })
