@@ -3,6 +3,8 @@ const userFindOneById = require('../modules/users/services/findOneById');
 const userCreateOne = require('../modules/users/services/createOne');
 const userUpdate = require('../modules/users/services/updateOneById');
 const userFind = require('../modules/users/services/find');
+const deleteOneById = require('../modules/users/middleware/deleteOneById');
+
 
 const router = new Router();
 
@@ -64,6 +66,30 @@ router.post('/users/userUpdated', (req, res, next) => {
   userUpdate(userToUpdate, userId)
     .then((user) => {
       res.render('userUpdated', { user });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get('/users/delete/:userId', (req, res) => {
+  const {
+    userId,
+  } = req.params;
+
+  userFindOneById(userId)
+    .then((user) => {
+      res.render('deleteUser', { user });
+    });
+});
+router.get('/users/userDeleted/:userId', (req, res, next) => {
+  const {
+    userId,
+  } = req.params;
+
+  deleteOneById(userId)
+    .then((user) => {
+      res.render('userDeleted', { user });
     })
     .catch((err) => {
       next(err);
