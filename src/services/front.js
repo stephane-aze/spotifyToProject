@@ -60,8 +60,12 @@ router.get('/users/update/:userId', (req, res) => {
 });
 
 router.post('/users/userUpdated', (req, res, next) => {
-  const userToUpdate = req.body;
-  const { userId } = userToUpdate.Id;
+  const userRec = req.body;
+  const { userId } = userRec.Id;
+  const userToUpdate = {
+    ...userRec,
+  };
+  delete userToUpdate.Id;
 
   userUpdate(userId, userToUpdate)
     .then((user) => {
