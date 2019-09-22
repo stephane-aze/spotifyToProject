@@ -98,5 +98,7 @@ router.get('/users/userDeleted/:userId', (req, res, next) => {
       next(err);
     });
 });
-
+router.get('/', (req, res) => {
+  res.render('index', { menuId: 'home' });
+});
 module.exports = router;
